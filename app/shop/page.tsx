@@ -222,19 +222,20 @@ export default function ShopPage() {
                   onClick={() => setSelectedProduct(product)}
                   className="glass rounded-3xl p-6 cursor-pointer hover:shadow-2xl transition-all group"
                 >
-                  <div className="relative aspect-square bg-gradient-to-br from-primary/20 to-secondary/20 rounded-2xl mb-4 overflow-hidden">
+                  <div className="relative aspect-square rounded-2xl mb-4 overflow-hidden">
                     {product.is_featured && (
-                      <span className="absolute top-3 right-3 bg-accent text-white text-xs font-bold px-3 py-1 rounded-full">
+                      <span className="absolute top-3 right-3 bg-accent text-white text-xs font-bold px-3 py-1 rounded-full z-10">
                         ✨ Featured
                       </span>
                     )}
-                    <div className="flex items-center justify-center h-full text-6xl group-hover:scale-110 transition-transform">
-                      {product.image_url ? (
-                        <span>💅</span>
-                      ) : (
-                        <span>💅</span>
-                      )}
-                    </div>
+                    <div
+                      className="absolute inset-0 bg-cover bg-center transition-transform duration-300 group-hover:scale-110"
+                      style={{
+                        backgroundImage: product.image_url
+                          ? `url(${product.image_url})`
+                          : 'url(https://images.unsplash.com/photo-1604654894610-df63bc536371?w=400&q=80)'
+                      }}
+                    />
                   </div>
                   <h3 className="text-xl font-semibold mb-2">{product.name}</h3>
                   <p className="text-foreground/60 text-sm mb-3 line-clamp-2">
@@ -308,8 +309,15 @@ export default function ShopPage() {
                 </button>
               </div>
 
-              <div className="aspect-square bg-gradient-to-br from-primary/20 to-secondary/20 rounded-2xl mb-6 flex items-center justify-center text-8xl">
-                💅
+              <div className="aspect-square rounded-2xl mb-6 overflow-hidden relative">
+                <div
+                  className="absolute inset-0 bg-cover bg-center"
+                  style={{
+                    backgroundImage: selectedProduct.image_url
+                      ? `url(${selectedProduct.image_url})`
+                      : 'url(https://images.unsplash.com/photo-1604654894610-df63bc536371?w=600&q=80)'
+                  }}
+                />
               </div>
 
               <p className="text-foreground/80 mb-6">{selectedProduct.description}</p>

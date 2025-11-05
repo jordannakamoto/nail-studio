@@ -145,9 +145,24 @@ export default function Home() {
 
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[
-              { name: 'Sunset Glow', price: '$24.99', emoji: '🌅' },
-              { name: 'Velvet Dreams', price: '$22.99', emoji: '💜' },
-              { name: 'Midnight Sparkle', price: '$26.99', emoji: '✨' },
+              {
+                name: 'Sunset Glow',
+                price: '$24.99',
+                image: 'https://images.unsplash.com/photo-1610992015762-45b1f5dd2a5a?w=400&q=80',
+                alt: 'Gradient orange and pink press-on nails'
+              },
+              {
+                name: 'Velvet Dreams',
+                price: '$22.99',
+                image: 'https://images.unsplash.com/photo-1604654894610-df63bc536371?w=400&q=80',
+                alt: 'Burgundy matte press-on nails'
+              },
+              {
+                name: 'Midnight Sparkle',
+                price: '$26.99',
+                image: 'https://images.unsplash.com/photo-1632345031435-8727f6897d53?w=400&q=80',
+                alt: 'Black glitter press-on nails'
+              },
             ].map((product, index) => (
               <motion.div
                 key={product.name}
@@ -156,10 +171,13 @@ export default function Home() {
                 transition={{ duration: 0.6, delay: index * 0.1 }}
                 viewport={{ once: true }}
                 whileHover={{ y: -10 }}
-                className="glass rounded-3xl p-6 hover:shadow-2xl transition-all cursor-pointer"
+                className="glass rounded-3xl p-6 hover:shadow-2xl transition-all cursor-pointer group"
               >
-                <div className="aspect-square bg-gradient-to-br from-primary/20 to-secondary/20 rounded-2xl mb-4 flex items-center justify-center text-6xl">
-                  {product.emoji}
+                <div className="aspect-square rounded-2xl mb-4 overflow-hidden relative">
+                  <div
+                    className="absolute inset-0 bg-cover bg-center transition-transform duration-300 group-hover:scale-110"
+                    style={{ backgroundImage: `url(${product.image})` }}
+                  />
                 </div>
                 <h3 className="text-xl font-semibold mb-2">{product.name}</h3>
                 <p className="text-primary text-lg font-bold">{product.price}</p>

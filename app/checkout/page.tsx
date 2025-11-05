@@ -340,8 +340,15 @@ export default function CheckoutPage() {
               <div className="space-y-4 mb-6">
                 {items.map((item) => (
                   <div key={`${item.product.id}-${item.size}`} className="flex gap-3">
-                    <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-lg flex items-center justify-center text-2xl flex-shrink-0">
-                      💅
+                    <div className="w-16 h-16 rounded-lg flex-shrink-0 overflow-hidden relative">
+                      <div
+                        className="absolute inset-0 bg-cover bg-center"
+                        style={{
+                          backgroundImage: item.product.image_url
+                            ? `url(${item.product.image_url})`
+                            : 'url(https://images.unsplash.com/photo-1604654894610-df63bc536371?w=100&q=80)'
+                        }}
+                      />
                     </div>
                     <div className="flex-grow">
                       <div className="font-medium">{item.product.name}</div>

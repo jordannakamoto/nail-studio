@@ -72,8 +72,15 @@ export default function CartPage() {
                   >
                     <div className="flex flex-col sm:flex-row gap-4">
                       {/* Product Image */}
-                      <div className="w-full sm:w-32 aspect-square bg-gradient-to-br from-primary/20 to-secondary/20 rounded-xl flex items-center justify-center text-4xl flex-shrink-0">
-                        💅
+                      <div className="w-full sm:w-32 aspect-square rounded-xl flex-shrink-0 overflow-hidden relative">
+                        <div
+                          className="absolute inset-0 bg-cover bg-center"
+                          style={{
+                            backgroundImage: item.product.image_url
+                              ? `url(${item.product.image_url})`
+                              : 'url(https://images.unsplash.com/photo-1604654894610-df63bc536371?w=200&q=80)'
+                          }}
+                        />
                       </div>
 
                       {/* Product Details */}
