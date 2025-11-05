@@ -255,86 +255,82 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Social Reviews Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
+      {/* Review Spotlight - Etsy Style */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white/50">
         <div className="max-w-6xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-3xl sm:text-4xl font-bold mb-3 gradient-text font-['Space_Grotesk']">
-              what people are saying
-            </h2>
-            <p className="text-foreground/60">no cap fr fr 💅</p>
-          </motion.div>
+          <div className="mb-8">
+            <h2 className="text-2xl font-semibold mb-2 text-foreground">Review spotlight</h2>
+            <p className="text-sm text-foreground/70">hear what our fave customers are saying 💅✨</p>
+          </div>
 
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
             {[
               {
-                name: 'sarah',
-                handle: '@sarahhhhh',
-                text: 'omg these nails are literally everything 😭 got so many compliments at the function last night',
-                verified: false
+                name: 'keyla gale',
+                rating: 4,
+                text: 'I am satisfied with the quality of the press on nails, however the sizes run smaller than I had expected. Will be ordering again!',
+                productName: 'Bubble Bath press ons | Handmade Press On Nails',
+                avatar: 'https://i.pravatar.cc/150?img=1'
               },
               {
-                name: 'mia ✨',
-                handle: '@miavibes',
-                text: 'hayley is literally so talented??? the detail work is insane and they lasted 3 weeks no chip',
-                verified: true
+                name: 'Sophia Stewart',
+                rating: 5,
+                text: 'Needed the nails I ordered early for my brothers wedding and made a note about it and she got them sent out on time for me! Love them!',
+                productName: 'Handmade Press On Nails: Reusable, Glue Ons',
+                avatar: 'https://i.pravatar.cc/150?img=5'
               },
               {
-                name: 'jess',
-                handle: '@jessthebest',
-                text: 'not me ordering another set before i even took the first one off 💀 they\'re that good',
-                verified: false
+                name: 'Caitlyn',
+                rating: 5,
+                text: 'They look just like the photos provided. Will be ordering again in the near future!! Love they included nail tools and peel & stick glue!',
+                productName: 'Hand Painted Cat Eye French Press On Nails',
+                avatar: 'https://i.pravatar.cc/150?img=9'
               },
               {
-                name: 'emma 🦋',
-                handle: '@emmaxo',
-                text: 'been buying press ons for years and these are by far the best quality. worth every penny tbh',
-                verified: true
-              },
-              {
-                name: 'lily',
-                handle: '@lilypad',
-                text: 'the custom design process was so fun!! hayley really understood the vision and executed perfectly',
-                verified: false
-              },
-              {
-                name: 'ava',
-                handle: '@avaaa',
-                text: 'literally so obsessed. everyone keeps asking where i got them done and i\'m gatekeeping 🤭',
-                verified: false
+                name: 'Sarah M',
+                rating: 5,
+                text: 'very pretty nails love them! the quality is amazing and they fit perfectly. highly recommend!',
+                productName: 'Celestial Milky White Gold Star Nails',
+                avatar: 'https://i.pravatar.cc/150?img=10'
               }
             ].map((review, index) => (
               <motion.div
-                key={review.handle}
+                key={index}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
                 viewport={{ once: true }}
-                className="bg-white border border-foreground/10 rounded-2xl p-5 hover:border-primary/30 transition-all"
+                className="bg-white border border-foreground/20 rounded-xl p-4 hover:shadow-md transition-all"
               >
-                <div className="flex items-start gap-3 mb-3">
-                  <div className="w-10 h-10 rounded-full bg-gradient-to-br from-primary to-secondary flex-shrink-0" />
+                <div className="flex items-center gap-2 mb-3">
+                  <img
+                    src={review.avatar}
+                    alt={review.name}
+                    className="w-8 h-8 rounded-full object-cover flex-shrink-0"
+                  />
                   <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-1">
-                      <span className="font-semibold text-sm truncate">{review.name}</span>
-                      {review.verified && (
-                        <svg className="w-4 h-4 text-primary flex-shrink-0" fill="currentColor" viewBox="0 0 24 24">
-                          <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    <div className="font-medium text-sm text-foreground truncate">{review.name}</div>
+                    <div className="flex items-center gap-0.5">
+                      {[...Array(5)].map((_, i) => (
+                        <svg
+                          key={i}
+                          className={`w-3 h-3 ${i < review.rating ? 'text-foreground' : 'text-foreground/20'}`}
+                          fill="currentColor"
+                          viewBox="0 0 20 20"
+                        >
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                         </svg>
-                      )}
+                      ))}
                     </div>
-                    <span className="text-xs text-foreground/50">{review.handle}</span>
                   </div>
                 </div>
-                <p className="text-sm text-foreground/80 leading-relaxed">
+                <p className="text-sm text-foreground/80 leading-relaxed mb-3">
                   {review.text}
                 </p>
+                <div className="flex items-start gap-2 pt-2 border-t border-foreground/10">
+                  <div className="w-8 h-8 rounded bg-muted flex-shrink-0" />
+                  <p className="text-xs text-foreground/60 line-clamp-2">{review.productName}</p>
+                </div>
               </motion.div>
             ))}
           </div>
