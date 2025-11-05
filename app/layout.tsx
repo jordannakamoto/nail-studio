@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import Navigation from "@/components/navigation";
+import StructuredData from "./structured-data";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -14,8 +15,15 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "NailStudio - Press-On Nails & Custom Nail Art",
-  description: "Shop stunning press-on nail sets and book custom nail art appointments. Your glow up starts here.",
+  title: "NailStudio - Handmade Press-On Nails | Rohnert Park, Santa Rosa, Petaluma",
+  description: "Small batch, handcrafted press-on nails and custom nail art in Rohnert Park. Serving Santa Rosa and Petaluma with local pickup and shipping. Book your custom design session today.",
+  keywords: "press-on nails Rohnert Park, custom nails Santa Rosa, nail art Petaluma, handmade press-on nails, local nail artist, Sonoma County nails",
+  openGraph: {
+    title: "NailStudio - Handmade Press-On Nails in Rohnert Park",
+    description: "Small batch handcrafted press-ons and custom nail art. Serving Rohnert Park, Santa Rosa, and Petaluma.",
+    type: "website",
+    locale: "en_US",
+  },
 };
 
 export default function RootLayout({
@@ -25,6 +33,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
+      <head>
+        <StructuredData />
+      </head>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >

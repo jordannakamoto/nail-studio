@@ -19,10 +19,10 @@ export default function AboutPage() {
             animate={{ opacity: 1, y: 0 }}
           >
             <h1 className="text-5xl sm:text-6xl font-bold mb-6 gradient-text font-['Space_Grotesk']">
-              About NailStudio
+              Hi, I'm [Your Name]
             </h1>
             <p className="text-xl text-foreground/80 mb-8">
-              Bringing salon-quality nails to your fingertips, one set at a time
+              Your local nail artist in Rohnert Park creating handmade press-on sets
             </p>
           </motion.div>
         </div>
@@ -37,23 +37,23 @@ export default function AboutPage() {
             viewport={{ once: true }}
             className="glass rounded-3xl p-8 md:p-12"
           >
-            <h2 className="text-3xl font-bold mb-6 gradient-text">Our Story</h2>
+            <h2 className="text-3xl font-bold mb-6 gradient-text">My Story</h2>
             <div className="space-y-4 text-lg text-foreground/80">
               <p>
-                NailStudio was born from a passion for nail art and a desire to make
-                professional-quality nails accessible to everyone. We believe that
-                beautiful nails shouldn't require hours at the salon or break the bank.
+                What started as a hobby painting nails for friends in my Rohnert Park
+                apartment has grown into a small business I'm so proud of. I create
+                each set by hand with attention to every detail.
               </p>
               <p>
-                Each of our press-on nail sets is carefully crafted with attention to
-                detail, using premium materials that last. From bold statement pieces
-                to subtle everyday elegance, we've got a design for every mood and
-                occasion.
+                I believe beautiful nails should be accessible, comfortable, and uniquely
+                you. That's why every set is made to order using quality materials that
+                actually last. Whether you want something bold or subtle, I'm here to
+                bring your vision to life.
               </p>
               <p>
-                Looking for something truly unique? Book a custom design consultation
-                and work one-on-one with our nail artists to create the perfect set
-                that expresses your personal style.
+                Based in Rohnert Park and serving the Sonoma County area, I offer local
+                pickup or shipping. Want something custom? Book a design session and we'll
+                create your perfect set together over coffee (or FaceTime!).
               </p>
             </div>
           </motion.div>
@@ -69,25 +69,25 @@ export default function AboutPage() {
             viewport={{ once: true }}
             className="text-center mb-12"
           >
-            <h2 className="text-4xl font-bold mb-4 gradient-text">What We Stand For</h2>
+            <h2 className="text-4xl font-bold mb-4 gradient-text">What I Believe In</h2>
           </motion.div>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
-                icon: '✨',
-                title: 'Quality First',
-                description: 'Premium materials and craftsmanship in every set',
+                icon: '💅',
+                title: 'Handmade Quality',
+                description: 'Every set is hand-painted and assembled with care',
               },
               {
                 icon: '🌱',
-                title: 'Sustainable Beauty',
-                description: 'Eco-friendly packaging and reusable nail sets',
+                title: 'Local & Sustainable',
+                description: 'Small batch production with eco-friendly packaging',
               },
               {
                 icon: '💖',
-                title: 'Self-Expression',
-                description: 'Empowering you to express your unique style',
+                title: 'Personal Touch',
+                description: 'Working with you to create nails that feel uniquely yours',
               },
             ].map((value, index) => (
               <motion.div
@@ -116,32 +116,32 @@ export default function AboutPage() {
             viewport={{ once: true }}
             className="glass rounded-3xl p-8 md:p-12"
           >
-            <h2 className="text-3xl font-bold mb-8 gradient-text">Why Choose Us?</h2>
+            <h2 className="text-3xl font-bold mb-8 gradient-text">Working Together</h2>
             <div className="space-y-6">
               {[
                 {
-                  title: 'Easy Application',
-                  description: 'Apply in minutes with our simple adhesive tabs or nail glue',
+                  title: 'Local Pickup',
+                  description: 'Meet me in Rohnert Park for same-day pickup (no shipping wait!)',
                 },
                 {
-                  title: 'Long-Lasting',
-                  description: 'Durable sets that last up to 2 weeks with proper care',
+                  title: 'Custom Designs',
+                  description: 'Book a design session to create something totally unique',
                 },
                 {
-                  title: 'Reusable',
-                  description: 'Remove and reapply multiple times for maximum value',
+                  title: 'Perfect Fit',
+                  description: 'Multiple sizes included, plus I can customize sizing',
                 },
                 {
-                  title: 'Custom Sizes',
-                  description: 'Each set includes multiple sizes for the perfect fit',
+                  title: 'Reusable Sets',
+                  description: 'Remove and reapply multiple times with proper care',
                 },
                 {
-                  title: 'Fast Shipping',
-                  description: 'Free shipping on orders over $30',
+                  title: 'Quick Turnaround',
+                  description: 'Most sets ship within 3-5 days, customs within a week',
                 },
                 {
-                  title: 'Easy Payments',
-                  description: 'Pay conveniently via Venmo or Zelle',
+                  title: 'Easy Payment',
+                  description: 'Pay via Venmo or Zelle (or cash for local pickup!)',
                 },
               ].map((feature, index) => (
                 <motion.div
@@ -177,10 +177,10 @@ export default function AboutPage() {
             viewport={{ once: true }}
           >
             <h2 className="text-4xl font-bold mb-6 gradient-text font-['Space_Grotesk']">
-              Ready to Elevate Your Nail Game?
+              Let's Work Together
             </h2>
             <p className="text-xl text-foreground/70 mb-8">
-              Browse our collection or book a custom design consultation today
+              Browse ready-made sets or book a session to design something custom
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link href="/shop">

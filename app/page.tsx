@@ -20,11 +20,19 @@ export default function Home() {
     <div className="relative overflow-hidden">
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center px-4 sm:px-6 lg:px-8">
-        {/* Animated Background Elements */}
+        {/* Background Image */}
         <div className="absolute inset-0 overflow-hidden">
+          <div
+            className="absolute inset-0 bg-cover bg-center opacity-20"
+            style={{
+              backgroundImage: 'url(https://images.unsplash.com/photo-1754799670410-b282791342c3?w=1364&q=80)',
+              filter: 'blur(8px)',
+              transform: 'scale(1.1)'
+            }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-background/90 via-background/80 to-background" />
           <div className="absolute top-20 left-10 w-72 h-72 bg-primary/20 rounded-full blur-3xl animate-float" />
           <div className="absolute bottom-20 right-10 w-96 h-96 bg-secondary/20 rounded-full blur-3xl animate-float" style={{ animationDelay: '1s' }} />
-          <div className="absolute top-1/2 left-1/2 w-64 h-64 bg-accent/20 rounded-full blur-3xl animate-float" style={{ animationDelay: '2s' }} />
         </div>
 
         <div className="relative z-10 max-w-6xl mx-auto text-center">
@@ -33,13 +41,13 @@ export default function Home() {
             transition={{ duration: 0.6 }}
             className="mb-6"
           >
-            <h1 className="text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold mb-6 font-['Space_Grotesk']">
-              <span className="gradient-text">
-                Your Glow Up
+            <h1 className="text-5xl sm:text-6xl md:text-7xl font-bold mb-6 font-['Space_Grotesk']">
+              <span className="text-foreground">
+                Hand-Painted Nails
               </span>
               <br />
-              <span className="text-foreground">
-                Starts Here
+              <span className="gradient-text">
+                Made With Love
               </span>
             </h1>
           </motion.div>
@@ -48,10 +56,10 @@ export default function Home() {
             initial={{ opacity: 0, y: 60 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2, duration: 0.6 }}
-            className="text-lg sm:text-xl md:text-2xl text-foreground/80 mb-8 max-w-2xl mx-auto"
+            className="text-lg sm:text-xl text-foreground/70 mb-8 max-w-xl mx-auto"
           >
-            Shop stunning press-on nail sets or book a custom nail art appointment.
-            Handcrafted perfection delivered to your door.
+            Small batch, handcrafted press-ons and custom nail art.
+            Serving Rohnert Park, Santa Rosa, and Petaluma.
           </motion.p>
 
           <motion.div
@@ -66,7 +74,7 @@ export default function Home() {
                 whileTap={{ scale: 0.95 }}
                 className="gradient-bg text-white px-8 py-4 rounded-full text-lg font-semibold shadow-xl animate-glow w-full sm:w-auto"
               >
-                Shop Now ✨
+                Browse Sets
               </motion.button>
             </Link>
             <Link href="/bookings">
@@ -75,24 +83,23 @@ export default function Home() {
                 whileTap={{ scale: 0.95 }}
                 className="glass px-8 py-4 rounded-full text-lg font-semibold border-2 border-primary/30 hover:border-primary/60 transition-colors w-full sm:w-auto"
               >
-                Book Appointment 💅
+                Book a Session
               </motion.button>
             </Link>
           </motion.div>
 
-          {/* Social Proof */}
+          {/* Info */}
           <motion.div
             initial={{ opacity: 0, y: 60 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.6, duration: 0.6 }}
-            className="flex flex-wrap justify-center items-center gap-8 text-sm text-foreground/60"
+            className="flex flex-wrap justify-center items-center gap-6 text-sm text-foreground/60"
           >
-            <div className="flex items-center gap-2">
-              <span className="text-2xl">⭐⭐⭐⭐⭐</span>
-              <span>500+ 5-star reviews</span>
-            </div>
-            <div>🚚 Free shipping over $30</div>
-            <div>💎 Premium quality</div>
+            <div>Each set handmade to order</div>
+            <div>•</div>
+            <div>Local pickup available</div>
+            <div>•</div>
+            <div>Custom designs welcome</div>
           </motion.div>
         </div>
 
@@ -129,10 +136,10 @@ export default function Home() {
             className="text-center mb-12"
           >
             <h2 className="text-4xl sm:text-5xl font-bold mb-4 gradient-text font-['Space_Grotesk']">
-              Featured Collection
+              Current Sets
             </h2>
             <p className="text-lg text-foreground/70">
-              Handpicked designs that are trending right now
+              Ready-to-ship designs made this week
             </p>
           </motion.div>
 
@@ -173,47 +180,85 @@ export default function Home() {
                 whileTap={{ scale: 0.95 }}
                 className="gradient-bg text-white px-8 py-4 rounded-full text-lg font-semibold shadow-xl"
               >
-                View All Products →
+                See All Sets →
               </motion.button>
             </Link>
           </motion.div>
         </div>
       </section>
 
-      {/* Why Choose Us */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-4xl sm:text-5xl font-bold mb-4 gradient-text font-['Space_Grotesk']">
-              Why Choose Us?
-            </h2>
-          </motion.div>
+      {/* Personal Note Section */}
+      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/30">
+        <div className="max-w-6xl mx-auto">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+            {/* Photo Side */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6 }}
+              viewport={{ once: true }}
+              className="order-2 md:order-1"
+            >
+              <div className="relative rounded-3xl overflow-hidden shadow-2xl aspect-[3/4]">
+                <div
+                  className="absolute inset-0 bg-cover bg-center"
+                  style={{
+                    backgroundImage: 'url(https://images.unsplash.com/photo-1754799670410-b282791342c3?w=800&q=80)',
+                  }}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
+              </div>
+            </motion.div>
 
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            {[
-              { icon: '💅', title: 'Premium Quality', description: 'Salon-quality nails you can apply at home' },
-              { icon: '🎨', title: 'Custom Designs', description: 'Book an appointment for personalized nail art' },
-              { icon: '💸', title: 'Easy Payment', description: 'Pay securely via Venmo or Zelle' },
-            ].map((feature, index) => (
-              <motion.div
-                key={feature.title}
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                className="text-center"
-              >
-                <div className="text-6xl mb-4">{feature.icon}</div>
-                <h3 className="text-2xl font-bold mb-2">{feature.title}</h3>
-                <p className="text-foreground/70">{feature.description}</p>
-              </motion.div>
-            ))}
+            {/* Letter Side */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.6, delay: 0.2 }}
+              viewport={{ once: true }}
+              className="order-1 md:order-2"
+            >
+              <div className="glass rounded-3xl p-8 md:p-10 relative">
+                <div className="absolute top-6 right-6 text-4xl opacity-20">💅</div>
+
+                <h2 className="text-3xl sm:text-4xl font-bold mb-6 gradient-text font-['Space_Grotesk']">
+                  A Note From Me
+                </h2>
+
+                <div className="space-y-4 text-foreground/80 leading-relaxed" style={{ fontFamily: 'Georgia, serif' }}>
+                  <p className="text-lg">
+                    Hey there! 👋
+                  </p>
+
+                  <p>
+                    I'm so glad you found my little corner of the internet. What started as
+                    painting nails for friends in my Rohnert Park apartment has become my
+                    passion project and small business.
+                  </p>
+
+                  <p>
+                    Every set I create is made by hand—no mass production here. I carefully
+                    hand-paint each nail, shape them perfectly, and package them with care.
+                    Whether you choose one of my ready-made sets or we design something
+                    custom together, you're getting something truly one-of-a-kind.
+                  </p>
+
+                  <p>
+                    I offer local pickup here in Rohnert Park (we can meet for coffee!) or
+                    I'll ship anywhere in the US. Payment is easy via Venmo or Zelle, and
+                    I'm always happy to chat about custom designs.
+                  </p>
+
+                  <p className="italic pt-4 border-t border-foreground/10">
+                    Can't wait to create something beautiful for you!
+                  </p>
+
+                  <p className="text-2xl gradient-text font-['Space_Grotesk'] pt-2">
+                    xoxo, [Your Name]
+                  </p>
+                </div>
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>
@@ -228,10 +273,10 @@ export default function Home() {
             viewport={{ once: true }}
           >
             <h2 className="text-4xl sm:text-5xl font-bold mb-6 font-['Space_Grotesk']">
-              Ready for Your Transformation?
+              Let's Create Something Beautiful
             </h2>
             <p className="text-xl mb-8 opacity-90">
-              Join thousands of happy customers who have elevated their nail game
+              Ready to get your custom set? Let's chat about your vision
             </p>
             <Link href="/shop">
               <motion.button
@@ -239,7 +284,7 @@ export default function Home() {
                 whileTap={{ scale: 0.95 }}
                 className="bg-white text-primary px-8 py-4 rounded-full text-lg font-semibold shadow-xl hover:shadow-2xl transition-shadow"
               >
-                Start Shopping Now
+                Browse Sets
               </motion.button>
             </Link>
           </motion.div>
