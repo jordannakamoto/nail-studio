@@ -15,12 +15,12 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "NailStudio - Handmade Press-On Nails | Rohnert Park, Santa Rosa, Petaluma",
-  description: "Small batch, handcrafted press-on nails and custom nail art in Rohnert Park. Serving Santa Rosa and Petaluma with local pickup and shipping. Book your custom design session today.",
-  keywords: "press-on nails Rohnert Park, custom nails Santa Rosa, nail art Petaluma, handmade press-on nails, local nail artist, Sonoma County nails",
+  title: "NailStudio by Hayley Clark - Handmade Press-On Nails | Rohnert Park, Santa Rosa, Petaluma",
+  description: "Small batch, handcrafted press-on nails and custom nail art by Hayley Clark in Rohnert Park. Serving Santa Rosa and Petaluma with local pickup and shipping. Book your custom design session today.",
+  keywords: "press-on nails Rohnert Park, custom nails Santa Rosa, nail art Petaluma, handmade press-on nails, local nail artist, Sonoma County nails, Hayley Clark nails",
   openGraph: {
-    title: "NailStudio - Handmade Press-On Nails in Rohnert Park",
-    description: "Small batch handcrafted press-ons and custom nail art. Serving Rohnert Park, Santa Rosa, and Petaluma.",
+    title: "NailStudio by Hayley Clark - Handmade Press-On Nails in Rohnert Park",
+    description: "Small batch handcrafted press-ons and custom nail art by Hayley Clark. Serving Rohnert Park, Santa Rosa, and Petaluma.",
     type: "website",
     locale: "en_US",
   },

@@ -19,7 +19,7 @@ export default function AboutPage() {
             animate={{ opacity: 1, y: 0 }}
           >
             <h1 className="text-5xl sm:text-6xl font-bold mb-6 gradient-text font-['Space_Grotesk']">
-              Hi, I'm [Your Name]
+              Hi, I'm Hayley
             </h1>
             <p className="text-xl text-foreground/80 mb-8">
               Your local nail artist in Rohnert Park creating handmade press-on sets

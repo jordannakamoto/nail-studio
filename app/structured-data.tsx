@@ -2,8 +2,12 @@ export default function StructuredData() {
   const localBusinessData = {
     "@context": "https://schema.org",
     "@type": "LocalBusiness",
-    "name": "NailStudio",
-    "description": "Handmade press-on nails and custom nail art in Rohnert Park, serving Santa Rosa and Petaluma",
+    "name": "NailStudio by Hayley Clark",
+    "description": "Handmade press-on nails and custom nail art by Hayley Clark in Rohnert Park, serving Santa Rosa and Petaluma",
+    "founder": {
+      "@type": "Person",
+      "name": "Hayley Clark"
+    },
     "url": "https://your-domain.com",
     "telephone": "+1-555-123-4567",
     "priceRange": "$$",

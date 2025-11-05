@@ -254,7 +254,7 @@ export default function Home() {
                   </p>
 
                   <p className="text-2xl gradient-text font-['Space_Grotesk'] pt-2">
-                    xoxo, [Your Name]
+                    xoxo, Hayley
                   </p>
                 </div>
               </div>
