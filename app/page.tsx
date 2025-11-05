@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
+import BookingFlow from '@/components/booking-flow'
 
 export default function Home() {
   const [mounted, setMounted] = useState(false)
@@ -19,7 +20,7 @@ export default function Home() {
   return (
     <div className="relative overflow-hidden">
       {/* Hero Section */}
-      <section className="relative pt-20 pb-12 md:pt-32 md:pb-16 flex items-center justify-center px-4 sm:px-6 lg:px-8 overflow-hidden">
+      <section className="relative pt-12 pb-8 md:pt-20 md:pb-12 flex items-center justify-center px-4 sm:px-6 lg:px-8 overflow-hidden">
         {/* Background with Illustration */}
         <div className="absolute inset-0">
           {/* Cloudy Gradient Background */}
@@ -195,65 +196,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Personal Note Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/30">
-        <div className="max-w-6xl mx-auto">
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
-            {/* Photo Side */}
-            <div className="order-2 md:order-1">
-              <div className="relative rounded-3xl overflow-hidden shadow-2xl aspect-[3/4]">
-                <div
-                  className="absolute inset-0 bg-cover bg-center"
-                  style={{
-                    backgroundImage: 'url(https://images.unsplash.com/photo-1754799670410-b282791342c3?w=800&q=80)',
-                  }}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent" />
-              </div>
-            </div>
-
-            {/* Letter Side */}
-            <div className="order-1 md:order-2">
-              <div className="glass rounded-3xl p-8 md:p-10 relative">
-                <div className="absolute top-6 right-6 text-4xl opacity-20">💅</div>
-                {/* Sparkle trim decorations */}
-                <svg className="absolute top-4 left-4 w-6 h-6 opacity-40" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 0l1.545 6.455L20 8l-6.455 1.545L12 16l-1.545-6.455L4 8l6.455-1.545L12 0z" className="text-blue-300" />
-                </svg>
-                <svg className="absolute bottom-4 right-4 w-6 h-6 opacity-40" viewBox="0 0 24 24" fill="currentColor">
-                  <path d="M12 0l1.545 6.455L20 8l-6.455 1.545L12 16l-1.545-6.455L4 8l6.455-1.545L12 0z" className="text-pink-200" />
-                </svg>
-
-                <h2 className="text-3xl sm:text-4xl font-bold mb-6 gradient-text font-['Space_Grotesk']">
-                  A Note From Me
-                </h2>
-
-                <div className="space-y-4 text-foreground/80 leading-relaxed" style={{ fontFamily: 'Georgia, serif' }}>
-                  <p className="text-lg">
-                    Hey there! 👋
-                  </p>
-
-                  <p>
-                    What started as painting nails for friends in my Rohnert Park apartment has become my passion project. Every set I create is handmade—no mass production here.
-                  </p>
-
-                  <p>
-                    Whether you choose a ready-made set or we design something custom together, you're getting something truly one-of-a-kind. Local pickup available or I'll ship anywhere in the US!
-                  </p>
-
-                  <p className="italic pt-4 border-t border-foreground/10">
-                    Can't wait to create something beautiful for you!
-                  </p>
-
-                  <p className="text-2xl gradient-text font-['Space_Grotesk'] pt-2">
-                    xoxo, Hayley
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
+      {/* Booking Flow Section */}
+      <BookingFlow />
 
       {/* Review Spotlight - Etsy Style */}
       <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white/50">
@@ -268,28 +212,28 @@ export default function Home() {
               {
                 name: 'keyla gale',
                 rating: 4,
-                text: 'I am satisfied with the quality of the press on nails, however the sizes run smaller than I had expected. Will be ordering again!',
+                text: 'ok but the quality is giving!! only thing is they run a lil smaller than expected ngl. def ordering again tho fr',
                 productName: 'Bubble Bath press ons | Handmade Press On Nails',
                 avatar: 'https://i.pravatar.cc/150?img=1'
               },
               {
                 name: 'Sophia Stewart',
                 rating: 5,
-                text: 'Needed the nails I ordered early for my brothers wedding and made a note about it and she got them sent out on time for me! Love them!',
+                text: "literally needed these for my brother's wedding and she came through!! left a note and she shipped them asap. no bc I'm obsessed!!",
                 productName: 'Handmade Press On Nails: Reusable, Glue Ons',
                 avatar: 'https://i.pravatar.cc/150?img=5'
               },
               {
                 name: 'Caitlyn',
                 rating: 5,
-                text: 'They look just like the photos provided. Will be ordering again in the near future!! Love they included nail tools and peel & stick glue!',
+                text: 'these are exactly like the pics!! ate and left no crumbs fr. ordering again asap!! also they threw in nail tools + the glue tabs?? iconic',
                 productName: 'Hand Painted Cat Eye French Press On Nails',
                 avatar: 'https://i.pravatar.cc/150?img=9'
               },
               {
                 name: 'Sarah M',
                 rating: 5,
-                text: 'very pretty nails love them! the quality is amazing and they fit perfectly. highly recommend!',
+                text: 'obsessed!! the quality is insane and they fit perfectly. 10/10 no notes. everyone needs to get these rn',
                 productName: 'Celestial Milky White Gold Star Nails',
                 avatar: 'https://i.pravatar.cc/150?img=10'
               }
@@ -338,7 +282,7 @@ export default function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 gradient-bg text-white relative overflow-hidden">
+      <section className="py-20 px-4 sm:px-6 lg:px-8 text-white relative overflow-hidden bg-cover bg-center" style={{ backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=1920&q=80)' }}>
         {/* Sparkle decorations floating in CTA */}
         <svg className="absolute top-10 left-[10%] w-10 h-10 animate-float opacity-40" viewBox="0 0 24 24" fill="currentColor">
           <path d="M12 0l1.545 6.455L20 8l-6.455 1.545L12 16l-1.545-6.455L4 8l6.455-1.545L12 0z" className="text-white" />
@@ -370,7 +314,7 @@ export default function Home() {
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="bg-white text-primary px-8 py-4 rounded-full text-lg font-semibold shadow-xl hover:shadow-2xl transition-shadow flex items-center gap-2"
+                className="bg-white/95 backdrop-blur-sm text-foreground px-10 py-5 rounded-full text-lg font-semibold shadow-2xl hover:shadow-xl hover:bg-white transition-all flex items-center gap-3 border-2 border-white/50"
               >
                 <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />

@@ -27,9 +27,7 @@ export default function Navigation() {
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? 'glass' : ''
-      }`}
+      className="relative transition-all duration-300"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
@@ -73,7 +71,7 @@ export default function Navigation() {
             ))}
 
             {/* CTA Button */}
-            <Link href="/bookings">
+            <Link href="/#booking">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -142,7 +140,7 @@ export default function Navigation() {
                   {link.label}
                 </Link>
               ))}
-              <Link href="/bookings" onClick={() => setIsOpen(false)}>
+              <Link href="/#booking" onClick={() => setIsOpen(false)}>
                 <button className="w-full gradient-bg text-white px-6 py-3 rounded-full font-medium shadow-lg flex items-center justify-center gap-2">
                   <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                     <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
