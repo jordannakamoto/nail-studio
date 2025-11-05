@@ -98,7 +98,7 @@ export default function Home() {
             transition={{ delay: 0.2, duration: 0.6 }}
             className="text-lg sm:text-xl text-foreground/70 max-w-xl mx-auto"
           >
-            Handcrafted press-ons in Rohnert Park
+            Handcrafted press-ons in Petaluma & Santa Rosa
           </motion.p>
         </div>
       </section>
