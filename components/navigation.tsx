@@ -46,6 +46,7 @@ export default function Navigation() {
             >
               ✨ NailStudio
             </motion.div>
+            <span className="hidden sm:block text-xs text-foreground/60 ml-2 mt-1">by Hayley</span>
           </Link>
 
           {/* Desktop Navigation */}
