@@ -218,49 +218,66 @@ export default function ShopPage() {
                   animate={{ opacity: 1, scale: 1 }}
                   exit={{ opacity: 0, scale: 0.9 }}
                   transition={{ duration: 0.3, delay: index * 0.05 }}
-                  whileHover={{ y: -10 }}
                   onClick={() => setSelectedProduct(product)}
-                  className="glass rounded-3xl p-6 cursor-pointer hover:shadow-2xl transition-all group"
+                  className="cursor-pointer group"
                 >
-                  <div className="relative aspect-square rounded-2xl mb-4 overflow-hidden">
-                    {product.is_featured && (
-                      <span className="absolute top-3 right-3 bg-accent text-white text-xs font-bold px-3 py-1 rounded-full z-10">
-                        ✨ Featured
-                      </span>
-                    )}
-                    <div
-                      className="absolute inset-0 bg-cover bg-center transition-transform duration-300 group-hover:scale-110"
-                      style={{
-                        backgroundImage: product.image_url
-                          ? `url(${product.image_url})`
-                          : 'url(https://images.unsplash.com/photo-1604654894610-df63bc536371?w=400&q=80)'
-                      }}
-                    />
-                  </div>
-                  <h3 className="text-xl font-semibold mb-2">{product.name}</h3>
-                  <p className="text-foreground/60 text-sm mb-3 line-clamp-2">
-                    {product.description}
-                  </p>
-                  <div className="flex items-center justify-between">
-                    <span className="text-primary text-xl font-bold">
-                      ${product.price}
-                    </span>
-                    <span className="text-foreground/50 text-sm">
-                      {product.stock_quantity} in stock
-                    </span>
-                  </div>
-                  {product.tags && product.tags.length > 0 && (
-                    <div className="flex flex-wrap gap-1 mt-3">
-                      {product.tags.slice(0, 3).map((tag) => (
-                        <span
-                          key={tag}
-                          className="text-xs px-2 py-1 bg-muted rounded-full text-foreground/70"
-                        >
-                          {tag}
+                  <div className="relative rounded-3xl overflow-hidden mb-4 shadow-xl hover:shadow-2xl transition-all duration-500">
+                    {/* Image Container */}
+                    <div className="aspect-[4/5] overflow-hidden relative">
+                      {product.is_featured && (
+                        <span className="absolute top-4 right-4 bg-accent text-white text-xs font-bold px-3 py-2 rounded-full z-10 shadow-lg">
+                          ✨ Featured
                         </span>
-                      ))}
+                      )}
+                      <div
+                        className="absolute inset-0 bg-cover bg-center transition-all duration-700 group-hover:scale-110"
+                        style={{
+                          backgroundImage: product.image_url
+                            ? `url(${product.image_url})`
+                            : 'url(https://images.unsplash.com/photo-1604654894610-df63bc536371?w=600&q=80)'
+                        }}
+                      />
+                      {/* Gradient Overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                      {/* Quick View on Hover */}
+                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        <span className="glass-dark px-6 py-3 rounded-full text-white font-semibold">
+                          Quick View
+                        </span>
+                      </div>
+
+                      {/* Tags on Image */}
+                      {product.tags && product.tags.length > 0 && (
+                        <div className="absolute bottom-3 left-3 right-3 flex flex-wrap gap-1">
+                          {product.tags.slice(0, 3).map((tag) => (
+                            <span
+                              key={tag}
+                              className="text-xs px-2 py-1 glass-dark text-white rounded-full"
+                            >
+                              {tag}
+                            </span>
+                          ))}
+                        </div>
+                      )}
                     </div>
-                  )}
+                  </div>
+
+                  {/* Product Info */}
+                  <div className="px-2">
+                    <h3 className="text-xl font-bold mb-1 group-hover:text-primary transition-colors">{product.name}</h3>
+                    <p className="text-foreground/60 text-sm mb-3 line-clamp-2">
+                      {product.description}
+                    </p>
+                    <div className="flex items-center justify-between">
+                      <span className="text-2xl font-bold text-primary">
+                        ${product.price}
+                      </span>
+                      <span className="text-foreground/50 text-sm">
+                        {product.stock_quantity > 0 ? `${product.stock_quantity} in stock` : 'Out of stock'}
+                      </span>
+                    </div>
+                  </div>
                 </motion.div>
               ))}
             </AnimatePresence>

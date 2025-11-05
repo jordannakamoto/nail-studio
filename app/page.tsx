@@ -143,45 +143,68 @@ export default function Home() {
             </p>
           </motion.div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
                 name: 'Sunset Glow',
                 price: '$24.99',
-                image: 'https://images.unsplash.com/photo-1610992015762-45b1f5dd2a5a?w=400&q=80',
+                description: 'Gradient ombre with shimmer',
+                image: 'https://images.unsplash.com/photo-1610992015762-45b1f5dd2a5a?w=600&q=80',
                 alt: 'Gradient orange and pink press-on nails'
               },
               {
                 name: 'Velvet Dreams',
                 price: '$22.99',
-                image: 'https://images.unsplash.com/photo-1604654894610-df63bc536371?w=400&q=80',
+                description: 'Matte burgundy elegance',
+                image: 'https://images.unsplash.com/photo-1604654894610-df63bc536371?w=600&q=80',
                 alt: 'Burgundy matte press-on nails'
               },
               {
                 name: 'Midnight Sparkle',
                 price: '$26.99',
-                image: 'https://images.unsplash.com/photo-1632345031435-8727f6897d53?w=400&q=80',
+                description: 'Black glitter fade',
+                image: 'https://images.unsplash.com/photo-1632345031435-8727f6897d53?w=600&q=80',
                 alt: 'Black glitter press-on nails'
               },
             ].map((product, index) => (
-              <motion.div
-                key={product.name}
-                initial={{ opacity: 0, y: 30 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                viewport={{ once: true }}
-                whileHover={{ y: -10 }}
-                className="glass rounded-3xl p-6 hover:shadow-2xl transition-all cursor-pointer group"
-              >
-                <div className="aspect-square rounded-2xl mb-4 overflow-hidden relative">
-                  <div
-                    className="absolute inset-0 bg-cover bg-center transition-transform duration-300 group-hover:scale-110"
-                    style={{ backgroundImage: `url(${product.image})` }}
-                  />
-                </div>
-                <h3 className="text-xl font-semibold mb-2">{product.name}</h3>
-                <p className="text-primary text-lg font-bold">{product.price}</p>
-              </motion.div>
+              <Link key={product.name} href="/shop">
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  viewport={{ once: true }}
+                  className="group cursor-pointer"
+                >
+                  <div className="relative rounded-3xl overflow-hidden mb-4 shadow-xl hover:shadow-2xl transition-all duration-500">
+                    {/* Image Container */}
+                    <div className="aspect-[4/5] overflow-hidden relative">
+                      <div
+                        className="absolute inset-0 bg-cover bg-center transition-all duration-700 group-hover:scale-110"
+                        style={{ backgroundImage: `url(${product.image})` }}
+                      />
+                      {/* Gradient Overlay */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+
+                      {/* Quick View on Hover */}
+                      <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                        <span className="glass-dark px-6 py-3 rounded-full text-white font-semibold">
+                          View Details
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Product Info */}
+                  <div className="px-2">
+                    <h3 className="text-xl font-bold mb-1 group-hover:text-primary transition-colors">{product.name}</h3>
+                    <p className="text-sm text-foreground/60 mb-2">{product.description}</p>
+                    <div className="flex items-center justify-between">
+                      <span className="text-2xl font-bold text-primary">{product.price}</span>
+                      <span className="text-sm text-foreground/50">In stock</span>
+                    </div>
+                  </div>
+                </motion.div>
+              </Link>
             ))}
           </div>
 
