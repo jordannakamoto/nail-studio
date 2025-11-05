@@ -1,36 +1,120 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 💅 NailStudio - Press-On Nail E-commerce & Booking Platform
 
-## Getting Started
+A modern, Gen-Z aesthetic press-on nail e-commerce and booking platform built with Next.js, Supabase, and Vercel. Features a mobile-first design with TikTok-inspired aesthetics, glassmorphism effects, and smooth animations.
 
-First, run the development server:
+![NailStudio](https://images.unsplash.com/photo-1754799670410-b282791342c3?w=1200&q=80)
+
+## ✨ Features
+
+### E-Commerce
+- 🛍️ Product catalog with filtering, search, and categories
+- 🏷️ Tag-based organization (glitter, matte, chrome, etc.)
+- 🛒 Persistent shopping cart with local storage
+- 💳 Checkout with Venmo/Zelle payment options
+- 📦 Order management and confirmation emails
+- ⭐ Product reviews and ratings system
+
+### Booking System
+- 📅 Interactive calendar for appointments
+- ⏰ Time slot selection
+- 💅 Multiple service types (consultations, custom designs)
+- 📧 Booking confirmation
+- 💰 Service pricing display
+
+### Design
+- 🎨 Gen-Z/TikTok aesthetic with gradients
+- ✨ Glassmorphism UI components
+- 🎭 Smooth Framer Motion animations
+- 📱 Mobile-first responsive design
+- 🌙 Dark mode support
+- 💫 Floating elements and glow effects
+
+## 🛠️ Tech Stack
+
+- **Framework**: Next.js 15 (App Router), TypeScript
+- **Styling**: Tailwind CSS
+- **Database**: Supabase (PostgreSQL)
+- **State**: Zustand
+- **Animations**: Framer Motion
+- **Deployment**: Vercel
+
+## 🚀 Quick Start
 
 ```bash
+# Install dependencies
+npm install
+
+# Set up environment variables (see .env.local)
+# Add your Supabase URL and anon key
+
+# Run database schema (in Supabase SQL Editor)
+# Execute supabase/schema.sql
+
+# Start development server
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 📋 Setup Guide
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+See [SETUP.md](./SETUP.md) for detailed setup instructions including:
+- Supabase configuration
+- Payment setup (Venmo/Zelle)
+- Product management
+- Deployment to Vercel
 
-## Learn More
+## 🗄️ Database
 
-To learn more about Next.js, take a look at the following resources:
+The app uses Supabase with these tables:
+- products, services, bookings, orders
+- order_items, cart_items, profiles
+- reviews, business_settings
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Run `supabase/schema.sql` to set up the complete schema with sample data.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 💳 Payment
 
-## Deploy on Vercel
+Currently supports Venmo and Zelle with manual payment verification. Customers provide their payment username during checkout, then send payment separately.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+To upgrade to automated payments, integrate Stripe or PayPal.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 🎨 Customization
+
+Edit colors in `app/globals.css`:
+```css
+--primary: #ff6b9d;    /* Main pink */
+--secondary: #c084fc;  /* Purple accent */
+--accent: #fbbf24;     /* Gold highlights */
+```
+
+Update business info in Supabase `business_settings` table.
+
+## 📦 Build & Deploy
+
+```bash
+# Build for production
+npm run build
+
+# Deploy to Vercel
+vercel --prod
+```
+
+Remember to add environment variables in Vercel dashboard.
+
+## 📸 Using Real Images
+
+Replace emoji placeholders with real product photos:
+1. Upload to Supabase Storage
+2. Update `image_url` field in products table
+3. Modify product display components
+
+Example stock photo: https://images.unsplash.com/photo-1754799670410-b282791342c3?w=1364&q=80
+
+## 📝 License
+
+MIT - Free to use for your nail business!
+
+---
+
+Built with 💅 and [Next.js](https://nextjs.org)
