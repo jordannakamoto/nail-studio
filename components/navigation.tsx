@@ -4,13 +4,11 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { motion, AnimatePresence } from 'framer-motion'
-import { useCartStore } from '@/lib/store/cart-store'
 
 export default function Navigation() {
   const [isOpen, setIsOpen] = useState(false)
   const [isScrolled, setIsScrolled] = useState(false)
   const pathname = usePathname()
-  const totalItems = useCartStore((state) => state.getTotalItems())
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,8 +20,6 @@ export default function Navigation() {
 
   const navLinks = [
     { href: '/', label: 'Home' },
-    { href: '/shop', label: 'Shop' },
-    { href: '/bookings', label: 'Book' },
     { href: '/about', label: 'About' },
   ]
 
@@ -42,9 +38,10 @@ export default function Navigation() {
             <motion.div
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="text-2xl md:text-3xl font-bold gradient-text font-['Space_Grotesk']"
+              className="text-2xl md:text-3xl font-bold gradient-text"
+              style={{ fontFamily: "'Dancing Script', 'Brush Script MT', cursive" }}
             >
-              ✨ NailStudio
+              HCNails
             </motion.div>
             <span className="hidden sm:block text-xs text-foreground/60 ml-2 mt-1">by Hayley</span>
           </Link>
@@ -75,73 +72,23 @@ export default function Navigation() {
               </Link>
             ))}
 
-            {/* Cart Icon */}
-            <Link href="/cart">
-              <motion.div
-                whileHover={{ scale: 1.1 }}
-                whileTap={{ scale: 0.9 }}
-                className="relative"
-              >
-                <svg
-                  className="w-6 h-6 text-foreground"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
-                  />
-                </svg>
-                {totalItems > 0 && (
-                  <motion.span
-                    initial={{ scale: 0 }}
-                    animate={{ scale: 1 }}
-                    className="absolute -top-2 -right-2 bg-primary text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center animate-glow"
-                  >
-                    {totalItems}
-                  </motion.span>
-                )}
-              </motion.div>
-            </Link>
-
             {/* CTA Button */}
             <Link href="/bookings">
               <motion.button
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="gradient-bg text-white px-6 py-2 rounded-full font-medium shadow-lg"
+                className="gradient-bg text-white px-6 py-2 rounded-full font-medium shadow-lg flex items-center gap-2"
               >
-                Book Now
+                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                </svg>
+                Book a Session
               </motion.button>
             </Link>
           </div>
 
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center space-x-4">
-            <Link href="/cart" className="relative">
-              <svg
-                className="w-6 h-6 text-foreground"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"
-                />
-              </svg>
-              {totalItems > 0 && (
-                <span className="absolute -top-2 -right-2 bg-primary text-white text-xs font-bold rounded-full w-5 h-5 flex items-center justify-center">
-                  {totalItems}
-                </span>
-              )}
-            </Link>
-
             <button
               onClick={() => setIsOpen(!isOpen)}
               className="text-foreground focus:outline-none"
@@ -196,8 +143,11 @@ export default function Navigation() {
                 </Link>
               ))}
               <Link href="/bookings" onClick={() => setIsOpen(false)}>
-                <button className="w-full gradient-bg text-white px-6 py-3 rounded-full font-medium shadow-lg">
-                  Book Now
+                <button className="w-full gradient-bg text-white px-6 py-3 rounded-full font-medium shadow-lg flex items-center justify-center gap-2">
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
+                  </svg>
+                  Book a Session
                 </button>
               </Link>
             </div>

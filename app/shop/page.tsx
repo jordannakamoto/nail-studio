@@ -38,10 +38,17 @@ export default function ShopPage() {
         .order('is_featured', { ascending: false })
         .order('created_at', { ascending: false })
 
-      if (error) throw error
+      if (error) {
+        console.warn('Supabase not configured, using placeholder data')
+        // Use placeholder data if Supabase isn't set up
+        setProducts([])
+        setLoading(false)
+        return
+      }
       setProducts(data || [])
     } catch (error) {
-      console.error('Error fetching products:', error)
+      console.warn('Error fetching products, using placeholder data:', error)
+      setProducts([])
     } finally {
       setLoading(false)
     }
@@ -207,7 +214,7 @@ export default function ShopPage() {
         ) : (
           <motion.div
             layout
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"
+            className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-4 md:gap-6"
           >
             <AnimatePresence>
               {filteredProducts.map((product, index) => (
@@ -221,12 +228,12 @@ export default function ShopPage() {
                   onClick={() => setSelectedProduct(product)}
                   className="cursor-pointer group"
                 >
-                  <div className="relative rounded-3xl overflow-hidden mb-4 shadow-xl hover:shadow-2xl transition-all duration-500">
+                  <div className="relative rounded-2xl overflow-hidden mb-3 shadow-lg hover:shadow-xl transition-all duration-500">
                     {/* Image Container */}
-                    <div className="aspect-[4/5] overflow-hidden relative">
+                    <div className="aspect-square overflow-hidden relative">
                       {product.is_featured && (
-                        <span className="absolute top-4 right-4 bg-accent text-white text-xs font-bold px-3 py-2 rounded-full z-10 shadow-lg">
-                          ✨ Featured
+                        <span className="absolute top-2 right-2 bg-accent text-white text-[10px] font-bold px-2 py-1 rounded-full z-10 shadow-lg">
+                          ✨
                         </span>
                       )}
                       <div
@@ -242,40 +249,25 @@ export default function ShopPage() {
 
                       {/* Quick View on Hover */}
                       <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-                        <span className="glass-dark px-6 py-3 rounded-full text-white font-semibold">
-                          Quick View
+                        <span className="glass-dark px-4 py-2 rounded-full text-white text-sm font-semibold">
+                          View
                         </span>
                       </div>
-
-                      {/* Tags on Image */}
-                      {product.tags && product.tags.length > 0 && (
-                        <div className="absolute bottom-3 left-3 right-3 flex flex-wrap gap-1">
-                          {product.tags.slice(0, 3).map((tag) => (
-                            <span
-                              key={tag}
-                              className="text-xs px-2 py-1 glass-dark text-white rounded-full"
-                            >
-                              {tag}
-                            </span>
-                          ))}
-                        </div>
-                      )}
                     </div>
                   </div>
 
                   {/* Product Info */}
-                  <div className="px-2">
-                    <h3 className="text-xl font-bold mb-1 group-hover:text-primary transition-colors">{product.name}</h3>
-                    <p className="text-foreground/60 text-sm mb-3 line-clamp-2">
-                      {product.description}
-                    </p>
+                  <div className="px-1">
+                    <h3 className="text-sm md:text-base font-bold mb-1 group-hover:text-primary transition-colors line-clamp-1">{product.name}</h3>
                     <div className="flex items-center justify-between">
-                      <span className="text-2xl font-bold text-primary">
+                      <span className="text-lg md:text-xl font-bold text-primary">
                         ${product.price}
                       </span>
-                      <span className="text-foreground/50 text-sm">
-                        {product.stock_quantity > 0 ? `${product.stock_quantity} in stock` : 'Out of stock'}
-                      </span>
+                      {product.tags && product.tags.length > 0 && (
+                        <span className="text-[10px] px-2 py-0.5 bg-muted rounded-full text-foreground/70">
+                          {product.tags[0]}
+                        </span>
+                      )}
                     </div>
                   </div>
                 </motion.div>

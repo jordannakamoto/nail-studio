@@ -1,9 +1,25 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700&family=Dancing+Script:wght@400;500;600;700&display=swap');
 
 @import "tailwindcss";
 
 :root {
-  /* Gen-Z Color Palette */
+  /* Light Cloud Theme with Gold Luxe Accent - Baby Blue, White & Gold */
+  --background: #f0f7ff;
+  --foreground: #1e3a5f;
+  --primary: #4da6c7;
+  --secondary: #7ec8e3;
+  --accent: #d4af37;
+  --muted: #e8f4f8;
+
+  /* Cloud-inspired Gradients - Blue only with better contrast */
+  --gradient-candy: linear-gradient(135deg, #4da6c7 0%, #7ec8e3 50%, #a8d8ea 100%);
+  --gradient-sunset: linear-gradient(135deg, #4da6c7 0%, #7ec8e3 100%);
+  --gradient-aurora: linear-gradient(135deg, #4da6c7 0%, #7ec8e3 50%, #a8d8ea 100%);
+  --gradient-glow: linear-gradient(135deg, #4da6c7 0%, #7ec8e3 50%, #a8d8ea 100%);
+}
+
+/* DARK THEME (SAVED) - Uncomment to switch back to dark theme
+:root {
   --background: #fef7ff;
   --foreground: #1a0321;
   --primary: #ff6b9d;
@@ -11,12 +27,20 @@
   --accent: #fbbf24;
   --muted: #f3e8ff;
 
-  /* Gradients */
   --gradient-candy: linear-gradient(135deg, #ff6b9d 0%, #c084fc 50%, #60a5fa 100%);
   --gradient-sunset: linear-gradient(135deg, #ff6b9d 0%, #fbbf24 100%);
   --gradient-aurora: linear-gradient(135deg, #c084fc 0%, #60a5fa 50%, #34d399 100%);
   --gradient-glow: linear-gradient(135deg, #ff6b9d 0%, #ff8fab 50%, #ffc2d6 100%);
 }
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0f0118;
+    --foreground: #fef7ff;
+    --muted: #2d1b3d;
+  }
+}
+*/
 
 @theme inline {
   --color-background: var(--background);
@@ -32,14 +56,6 @@
   --animate-float: float 3s ease-in-out infinite;
   --animate-glow: glow 2s ease-in-out infinite alternate;
   --animate-slide-up: slideUp 0.5s ease-out;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0f0118;
-    --foreground: #fef7ff;
-    --muted: #2d1b3d;
-  }
 }
 
 body {
@@ -98,17 +114,32 @@ body {
 /* Glow animation */
 @keyframes glow {
   from {
-    box-shadow: 0 0 20px rgba(255, 107, 157, 0.5),
-                0 0 40px rgba(192, 132, 252, 0.3);
+    box-shadow: 0 0 20px rgba(126, 200, 227, 0.5),
+                0 0 40px rgba(168, 216, 234, 0.3);
   }
   to {
-    box-shadow: 0 0 40px rgba(255, 107, 157, 0.8),
-                0 0 80px rgba(192, 132, 252, 0.5);
+    box-shadow: 0 0 40px rgba(126, 200, 227, 0.8),
+                0 0 80px rgba(168, 216, 234, 0.5);
   }
 }
 
 .animate-glow {
   animation: glow 2s ease-in-out infinite alternate;
+}
+
+.animate-glow-blue {
+  animation: glow-blue 2s ease-in-out infinite alternate;
+}
+
+@keyframes glow-blue {
+  from {
+    box-shadow: 0 0 20px rgba(77, 166, 199, 0.6),
+                0 0 40px rgba(126, 200, 227, 0.4);
+  }
+  to {
+    box-shadow: 0 0 30px rgba(77, 166, 199, 0.9),
+                0 0 60px rgba(126, 200, 227, 0.6);
+  }
 }
 
 /* Slide up animation */
