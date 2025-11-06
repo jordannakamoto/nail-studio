@@ -48,8 +48,7 @@ export default function BookingsPage() {
             price: 45,
             duration_minutes: 60,
             is_active: true,
-            created_at: new Date().toISOString(),
-            updated_at: new Date().toISOString()
+            created_at: new Date().toISOString()
           },
           {
             id: '2',
@@ -58,8 +57,7 @@ export default function BookingsPage() {
             price: 25,
             duration_minutes: 30,
             is_active: true,
-            created_at: new Date().toISOString(),
-            updated_at: new Date().toISOString()
+            created_at: new Date().toISOString()
           },
           {
             id: '3',
@@ -68,8 +66,7 @@ export default function BookingsPage() {
             price: 15,
             duration_minutes: 30,
             is_active: true,
-            created_at: new Date().toISOString(),
-            updated_at: new Date().toISOString()
+            created_at: new Date().toISOString()
           }
         ])
         setLoading(false)
