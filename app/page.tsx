@@ -20,14 +20,14 @@ export default function Home() {
   return (
     <div className="relative overflow-hidden">
       {/* Hero Section */}
-      <section className="relative pt-12 pb-8 md:pt-20 md:pb-12 flex items-center justify-center px-4 sm:px-6 lg:px-8 overflow-hidden">
+      <section className="relative pt-8 pb-20 md:pt-12 md:pb-32 flex items-start justify-center px-4 sm:px-6 lg:px-8 overflow-hidden">
         {/* Background with Illustration */}
         <div className="absolute inset-0">
           {/* Cloudy Gradient Background */}
           <div className="absolute inset-0 bg-gradient-to-br from-blue-100/50 via-white to-blue-50" />
 
           {/* Hero Illustration - positioned on right side */}
-          <div className="hidden md:block absolute right-[10%] top-1/2 -translate-y-1/2 w-1/3 h-2/3 opacity-60">
+          <div className="hidden md:block absolute right-[8%] top-1/2 -translate-y-1/2 w-2/5 h-3/4 opacity-60">
             <img
               src="/hand.png"
               alt="Illustration of nail artist"
@@ -105,7 +105,7 @@ export default function Home() {
       </section>
 
       {/* Featured Collection */}
-      <section className="pb-20 px-4 sm:px-6 lg:px-8">
+      <section className="relative pb-20 px-4 sm:px-6 lg:px-8">
         <div className="max-w-7xl mx-auto">
           <div className="grid grid-cols-2 sm:grid-cols-3 gap-4 md:gap-6 max-w-3xl mx-auto">
             {[
@@ -193,6 +193,42 @@ export default function Home() {
             ))}
           </div>
 
+          {/* See More Link */}
+          <div className="max-w-3xl mx-auto mt-6 flex justify-end">
+            <Link href="/styles">
+              <motion.div
+                initial={{ opacity: 0 }}
+                whileInView={{ opacity: 1 }}
+                transition={{ duration: 0.3 }}
+                viewport={{ once: true }}
+                className="text-sm text-foreground/60 hover:text-primary transition-colors flex items-center gap-1 group"
+              >
+                see more
+                <svg className="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                </svg>
+              </motion.div>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Transition to Booking */}
+      <section className="py-6 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-background to-muted/30">
+        <div className="max-w-4xl mx-auto text-center">
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+          >
+            <p className="text-lg md:text-xl text-foreground/70 mb-3">
+              ready to get your custom set?
+            </p>
+            <h2 className="text-3xl md:text-4xl font-bold gradient-text font-['Space_Grotesk']">
+              let's make it happen ✨
+            </h2>
+          </motion.div>
         </div>
       </section>
 
@@ -200,8 +236,18 @@ export default function Home() {
       <BookingFlow />
 
       {/* Review Spotlight - Etsy Style */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 bg-white/50">
+      <section className="pt-20 pb-2 px-4 sm:px-6 lg:px-8 bg-white/50">
         <div className="max-w-6xl mx-auto">
+          {/* Services Description */}
+          <div className="mb-12">
+            <h2 className="text-2xl font-semibold mb-2 text-foreground">What we do</h2>
+            <p className="text-base text-foreground/80 leading-relaxed">
+              specializing in custom nail art, gel manicures, and creative designs that match your vibe.
+              serving petaluma & santa rosa with mobile appointments available. whether you want something
+              simple and clean or bold and artistic, we'll create a look you'll love.
+            </p>
+          </div>
+
           <div className="mb-8">
             <h2 className="text-2xl font-semibold mb-2 text-foreground">Review spotlight</h2>
             <p className="text-sm text-foreground/70">hear what our fave customers are saying 💅✨</p>
@@ -281,50 +327,75 @@ export default function Home() {
         </div>
       </section>
 
-      {/* CTA Section */}
-      <section className="py-20 px-4 sm:px-6 lg:px-8 text-white relative overflow-hidden bg-cover bg-center" style={{ backgroundImage: 'linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)), url(https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?w=1920&q=80)' }}>
-        {/* Sparkle decorations floating in CTA */}
-        <svg className="absolute top-10 left-[10%] w-10 h-10 animate-float opacity-40" viewBox="0 0 24 24" fill="currentColor">
-          <path d="M12 0l1.545 6.455L20 8l-6.455 1.545L12 16l-1.545-6.455L4 8l6.455-1.545L12 0z" className="text-white" />
-        </svg>
-        <svg className="absolute top-20 right-[15%] w-8 h-8 animate-float opacity-50" viewBox="0 0 24 24" fill="currentColor" style={{ animationDelay: '0.7s' }}>
-          <path d="M12 0l1.545 6.455L20 8l-6.455 1.545L12 16l-1.545-6.455L4 8l6.455-1.545L12 0z" className="text-white" />
-        </svg>
-        <svg className="absolute bottom-10 left-[20%] w-12 h-12 animate-float opacity-30" viewBox="0 0 24 24" fill="currentColor" style={{ animationDelay: '1.2s' }}>
-          <path d="M12 0l1.545 6.455L20 8l-6.455 1.545L12 16l-1.545-6.455L4 8l6.455-1.545L12 0z" className="text-white" />
-        </svg>
-        <svg className="absolute bottom-16 right-[25%] w-10 h-10 animate-float opacity-40" viewBox="0 0 24 24" fill="currentColor" style={{ animationDelay: '0.4s' }}>
-          <path d="M12 0l1.545 6.455L20 8l-6.455 1.545L12 16l-1.545-6.455L4 8l6.455-1.545L12 0z" className="text-white" />
-        </svg>
-
-        <div className="max-w-4xl mx-auto text-center relative z-10">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            viewport={{ once: true }}
-          >
-            <h2 className="text-4xl sm:text-5xl font-bold mb-6 font-['Space_Grotesk']">
-              Let's Create Something Beautiful
-            </h2>
-            <p className="text-xl mb-8 opacity-90">
-              Ready to get your custom set? Let's chat about your vision
-            </p>
-            <a href="sms:+15033322386" className="inline-block">
-              <motion.button
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="bg-white/95 backdrop-blur-sm text-foreground px-10 py-5 rounded-full text-lg font-semibold shadow-2xl hover:shadow-xl hover:bg-white transition-all flex items-center gap-3 border-2 border-white/50"
-              >
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
-                </svg>
-                Message Me
-              </motion.button>
+      {/* Contact Section */}
+      <section className="pt-12 pb-40 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-white/50 to-transparent">
+        <div className="max-w-6xl mx-auto">
+          <div className="mb-4">
+            <h2 className="text-2xl font-semibold mb-2 text-foreground">Contact</h2>
+            <p className="text-sm text-foreground/70 mb-3">feel free to message me with absolutely any questions you might have! would love to chat about your ideas or design inspirations</p>
+            <a href="sms:+15551234567" className="text-base text-primary hover:underline">
+              (555) 123-4567
             </a>
-          </motion.div>
+          </div>
         </div>
       </section>
+
+      {/* Footer with Background */}
+      <footer className="relative py-16 px-4 sm:px-6 lg:px-8 overflow-hidden">
+        {/* Background Image with Overlay */}
+        <div className="absolute inset-0">
+          <div
+            className="absolute inset-0 bg-cover bg-center"
+            style={{
+              backgroundImage: 'url(https://images.unsplash.com/photo-1547104442-044448b73426?ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&q=80&w=1035)',
+            }}
+          />
+        </div>
+
+        {/* Content */}
+        <div className="relative z-10 max-w-4xl mx-auto text-center">
+          <h2
+            className="text-3xl md:text-4xl font-bold mb-6 gradient-text"
+            style={{ fontFamily: "'Dancing Script', 'Brush Script MT', cursive" }}
+          >
+            HCNails
+          </h2>
+
+          <p className="text-sm text-foreground/70 mb-4">
+            thank you for visiting. see more of my work on my socials
+          </p>
+
+          {/* Social Media Links */}
+          <div className="flex items-center justify-center gap-4 text-sm">
+            <a
+              href="https://instagram.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-foreground/60 hover:text-primary transition-colors underline"
+            >
+              instagram
+            </a>
+            <span className="text-foreground/40">•</span>
+            <a
+              href="https://facebook.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-foreground/60 hover:text-primary transition-colors underline"
+            >
+              facebook
+            </a>
+            <span className="text-foreground/40">•</span>
+            <a
+              href="https://tiktok.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-foreground/60 hover:text-primary transition-colors underline"
+            >
+              tiktok
+            </a>
+          </div>
+        </div>
+      </footer>
     </div>
   )
 }

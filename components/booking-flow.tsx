@@ -23,6 +23,8 @@ export default function BookingFlow() {
     phone: '',
     notes: ''
   })
+  const [inspirationImages, setInspirationImages] = useState<string[]>([])
+  const [imageInputValue, setImageInputValue] = useState('')
   const [services, setServices] = useState<Service[]>([])
   const [isSubmitting, setIsSubmitting] = useState(false)
   const [currentWeekStart, setCurrentWeekStart] = useState(new Date())
@@ -55,6 +57,28 @@ export default function BookingFlow() {
       ? `(${cleaned.slice(0, 3)}) ${cleaned.slice(3, 6)}-${cleaned.slice(6, 10)}`
       : value
     setFormData({ ...formData, phone: formatted })
+  }
+
+  const handleImagePaste = (e: React.ClipboardEvent<HTMLInputElement>) => {
+    const pastedText = e.clipboardData.getData('text')
+    if (pastedText && (pastedText.startsWith('http://') || pastedText.startsWith('https://'))) {
+      e.preventDefault()
+      setInspirationImages([...inspirationImages, pastedText])
+      setImageInputValue('')
+    }
+  }
+
+  const handleImageInputChange = (value: string) => {
+    setImageInputValue(value)
+    // Auto-detect when a URL is completed
+    if (value && (value.match(/\.(jpg|jpeg|png|gif|webp)$/i) || value.match(/instagram\.com|pinterest\.com/))) {
+      setInspirationImages([...inspirationImages, value])
+      setImageInputValue('')
+    }
+  }
+
+  const removeImage = (index: number) => {
+    setInspirationImages(inspirationImages.filter((_, i) => i !== index))
   }
 
   // Get week days starting from Monday
@@ -112,6 +136,7 @@ export default function BookingFlow() {
       customer_email: formData.email,
       customer_phone: formData.phone,
       notes: formData.notes,
+      inspiration_images: inspirationImages.join(','),
       status: 'pending'
     })
 
@@ -124,46 +149,8 @@ export default function BookingFlow() {
 
   const steps = [
     {
-      title: "what are we doing today?",
-      subtitle: "pick the vibe you're going for ✨",
-      content: (
-        <div className="space-y-4">
-          <div className="space-y-3">
-            {services.map((service) => (
-              <button
-                key={service.id}
-                onClick={() => setSelectedService(service)}
-                className={`w-full text-left p-5 rounded-2xl border-2 transition-all ${
-                  selectedService?.id === service.id
-                    ? 'border-primary bg-primary/5'
-                    : 'border-foreground/10 hover:border-primary/30 bg-white'
-                }`}
-              >
-                <div className="flex justify-between items-start mb-2">
-                  <h3 className="font-semibold text-lg text-foreground">{service.name}</h3>
-                  <span className="text-primary font-bold">${service.price}</span>
-                </div>
-                {service.description && (
-                  <p className="text-sm text-foreground/60">{service.description}</p>
-                )}
-                <p className="text-xs text-foreground/50 mt-2">{service.duration_minutes} minutes</p>
-              </button>
-            ))}
-          </div>
-
-          <button
-            onClick={() => setStep(1)}
-            disabled={!selectedService}
-            className="w-full gradient-bg text-white px-8 py-4 rounded-full font-medium shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-          >
-            next step →
-          </button>
-        </div>
-      )
-    },
-    {
-      title: "when works for you?",
-      subtitle: "pick a day & time that fits your schedule 📅",
+      title: "pick a date & time",
+      subtitle: "here's my availability",
       content: (
         <div className="space-y-6">
           {/* Hidden date input for month picker */}
@@ -224,7 +211,7 @@ export default function BookingFlow() {
                           ? 'border-primary bg-primary text-white'
                           : isPast
                           ? 'border-foreground/5 bg-foreground/5 text-foreground/30 cursor-not-allowed'
-                          : 'border-foreground/10 hover:border-primary/30 bg-white text-foreground'
+                          : 'border-foreground/10 hover:border-primary/30 bg-white text-gray-900'
                       }`}
                     >
                       <div className="text-xs font-medium mb-1">
@@ -248,12 +235,12 @@ export default function BookingFlow() {
                   key={time}
                   onClick={() => setSelectedTime(time)}
                   disabled={!selectedDate}
-                  className={`p-3 rounded-xl border-2 transition-all text-sm ${
+                  className={`p-3 rounded-xl border-2 transition-all text-sm font-medium ${
                     selectedTime === time
                       ? 'border-primary bg-primary text-white'
                       : !selectedDate
                       ? 'border-foreground/5 bg-foreground/5 text-foreground/30 cursor-not-allowed'
-                      : 'border-foreground/10 hover:border-primary/30 bg-white text-foreground'
+                      : 'border-foreground/10 hover:border-primary/30 bg-white text-gray-900'
                   }`}
                 >
                   {time}
@@ -263,68 +250,158 @@ export default function BookingFlow() {
           </div>
 
           <button
-            onClick={() => setStep(2)}
+            onClick={() => setStep(1)}
             disabled={!selectedDate || !selectedTime}
             className="w-full gradient-bg text-white px-8 py-4 rounded-full font-medium shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed"
           >
-            Continue →
+            next step →
           </button>
         </div>
       )
     },
     {
-      title: "almost there!",
-      subtitle: "just need a few deets so i can reach you 📱",
+      title: "choose your service",
+      subtitle: "",
       content: (
         <div className="space-y-4">
+          <div className="space-y-3">
+            {services.map((service) => (
+              <button
+                key={service.id}
+                onClick={() => setSelectedService(service)}
+                className={`w-full text-left p-5 rounded-2xl border-2 transition-all ${
+                  selectedService?.id === service.id
+                    ? 'border-primary bg-primary/5'
+                    : 'border-foreground/10 hover:border-primary/30 bg-white'
+                }`}
+              >
+                <div className="flex justify-between items-start mb-2">
+                  <h3 className="font-semibold text-lg text-foreground">{service.name}</h3>
+                  <span className="text-primary font-bold">${service.price}</span>
+                </div>
+                {service.description && (
+                  <p className="text-sm text-foreground/60">{service.description}</p>
+                )}
+                <p className="text-xs text-foreground/50 mt-2">{service.duration_minutes} minutes</p>
+              </button>
+            ))}
+          </div>
+
+          <button
+            onClick={() => setStep(2)}
+            disabled={!selectedService}
+            className="w-full gradient-bg text-white px-8 py-4 rounded-full font-medium shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+          >
+            next step →
+          </button>
+        </div>
+      )
+    },
+    {
+      title: "your info",
+      subtitle: "",
+      content: (
+        <div className="space-y-3">
           <div>
-            <label className="block text-sm font-medium mb-2 text-foreground">Name</label>
+            <label className="block text-sm font-medium mb-1.5 text-foreground">Name</label>
             <input
               type="text"
               value={formData.name}
               onChange={(e) => setFormData({ ...formData, name: e.target.value })}
               placeholder="Your name"
-              className="w-full bg-white border-2 border-foreground/10 px-4 py-3.5 rounded-xl focus:outline-none focus:border-primary transition-all text-foreground"
+              className="w-full bg-white border-2 border-foreground/10 px-4 py-2.5 rounded-xl focus:outline-none focus:border-primary transition-all text-foreground"
             />
           </div>
 
-          <div>
-            <label className="block text-sm font-medium mb-2 text-foreground">Email</label>
-            <input
-              type="email"
-              value={formData.email}
-              onChange={(e) => setFormData({ ...formData, email: e.target.value })}
-              placeholder="your@email.com"
-              className="w-full bg-white border-2 border-foreground/10 px-4 py-3.5 rounded-xl focus:outline-none focus:border-primary transition-all text-foreground"
-            />
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
+            <div>
+              <label className="block text-sm font-medium mb-1.5 text-foreground">Email</label>
+              <input
+                type="email"
+                value={formData.email}
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                placeholder="your@email.com"
+                className="w-full bg-white border-2 border-foreground/10 px-4 py-2.5 rounded-xl focus:outline-none focus:border-primary transition-all text-foreground"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium mb-1.5 text-foreground">Phone</label>
+              <input
+                type="tel"
+                value={formData.phone}
+                onChange={(e) => handlePhoneChange(e.target.value)}
+                placeholder="(555) 123-4567"
+                className="w-full bg-white border-2 border-foreground/10 px-4 py-2.5 rounded-xl focus:outline-none focus:border-primary transition-all text-foreground"
+              />
+            </div>
           </div>
 
           <div>
-            <label className="block text-sm font-medium mb-2 text-foreground">Phone</label>
-            <input
-              type="tel"
-              value={formData.phone}
-              onChange={(e) => handlePhoneChange(e.target.value)}
-              placeholder="(555) 123-4567"
-              className="w-full bg-white border-2 border-foreground/10 px-4 py-3.5 rounded-xl focus:outline-none focus:border-primary transition-all text-foreground"
-            />
-          </div>
-
-          <div>
-            <label className="block text-sm font-medium mb-2 text-foreground">Special Requests (Optional)</label>
+            <label className="block text-sm font-medium mb-1.5 text-foreground">Special Requests (Optional)</label>
             <textarea
               value={formData.notes}
               onChange={(e) => setFormData({ ...formData, notes: e.target.value })}
               placeholder="Any design ideas or preferences?"
-              rows={3}
-              className="w-full bg-white border-2 border-foreground/10 px-4 py-3.5 rounded-xl focus:outline-none focus:border-primary transition-all text-foreground resize-none"
+              rows={2}
+              className="w-full bg-white border-2 border-foreground/10 px-4 py-2.5 rounded-xl focus:outline-none focus:border-primary transition-all text-foreground resize-none"
             />
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium mb-1.5 text-foreground">Design Inspiration (Optional)</label>
+            <input
+              type="text"
+              value={imageInputValue}
+              onChange={(e) => handleImageInputChange(e.target.value)}
+              onPaste={handleImagePaste}
+              placeholder="Paste image URLs from Instagram, Pinterest, or anywhere"
+              className="w-full bg-white border-2 border-foreground/10 px-4 py-2.5 rounded-xl focus:outline-none focus:border-primary transition-all text-foreground"
+            />
+            <p className="text-xs text-foreground/50 mt-1.5">paste a link and it'll automatically be added to your inspiration board below</p>
+
+            {/* Image Previews */}
+            {inspirationImages.length > 0 && (
+              <div className="mt-3 space-y-2">
+                {inspirationImages.map((url, index) => (
+                  <div key={index} className="flex items-center gap-3 p-2 bg-muted rounded-lg group">
+                    <div className="w-16 h-16 rounded-lg overflow-hidden bg-foreground/5 flex-shrink-0">
+                      <img
+                        src={url}
+                        alt={`Inspiration ${index + 1}`}
+                        className="w-full h-full object-cover"
+                        onError={(e) => {
+                          const target = e.target as HTMLImageElement
+                          target.style.display = 'none'
+                          const parent = target.parentElement
+                          if (parent) {
+                            parent.innerHTML = '<div class="w-full h-full flex items-center justify-center text-xs text-foreground/40">Preview unavailable</div>'
+                          }
+                        }}
+                      />
+                    </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-xs text-foreground/60 truncate">{url}</p>
+                    </div>
+                    <button
+                      type="button"
+                      onClick={() => removeImage(index)}
+                      className="p-1.5 hover:bg-foreground/10 rounded-lg transition-colors opacity-0 group-hover:opacity-100"
+                    >
+                      <svg className="w-4 h-4 text-foreground/60" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                      </svg>
+                    </button>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
 
           <button
             onClick={handleSubmit}
             disabled={!formData.name || !formData.email || isSubmitting}
-            className="w-full bg-foreground text-background px-8 py-4 rounded-full font-medium shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+            className="w-full bg-foreground text-background px-8 py-3.5 rounded-full font-medium shadow-lg hover:shadow-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed"
           >
             {isSubmitting ? 'Booking...' : 'Confirm Booking'}
           </button>
@@ -368,24 +445,6 @@ export default function BookingFlow() {
   return (
     <section id="booking" className="py-20 px-4 sm:px-6 lg:px-8 bg-muted/30">
       <div className="max-w-7xl mx-auto">
-        {/* Header */}
-        <div className="text-center mb-12">
-          <div className="flex items-center justify-center gap-3 mb-4">
-            <svg className="w-10 h-10 sm:w-12 sm:h-12 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z" />
-            </svg>
-            <h2 className="text-4xl sm:text-5xl font-bold text-foreground font-['Space_Grotesk']">
-              schedule us
-            </h2>
-          </div>
-          <div className="max-w-2xl mx-auto mt-8">
-            <p className="text-base text-foreground/80 leading-relaxed">
-              specializing in custom nail art, gel manicures, and creative designs that match your vibe.
-              serving petaluma & santa rosa with mobile appointments available. whether you want something
-              simple and clean or bold and artistic, we'll create a look you'll love.
-            </p>
-          </div>
-        </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           {/* Small Photo Sidebar */}
@@ -427,7 +486,17 @@ export default function BookingFlow() {
 
           {/* Main Booking Content */}
           <div className="lg:col-span-2 order-1 lg:order-2">
-            <div className="bg-white rounded-3xl p-8 md:p-10 shadow-xl">
+            <div className="bg-white rounded-3xl p-8 md:p-10 shadow-xl relative">
+              {/* Back button - top left */}
+              {step > 0 && step < 3 && (
+                <button
+                  onClick={() => setStep(step - 1)}
+                  className="absolute top-4 left-4 text-sm text-foreground/60 hover:text-primary transition-colors flex items-center gap-1"
+                >
+                  ← Back
+                </button>
+              )}
+
               {/* Progress indicator */}
               {step < 3 && (
                 <div className="flex items-center justify-center gap-3 mb-6">
@@ -448,16 +517,6 @@ export default function BookingFlow() {
                 </div>
               )}
 
-              {/* Back button */}
-              {step > 0 && step < 3 && (
-                <button
-                  onClick={() => setStep(step - 1)}
-                  className="mb-4 text-sm text-foreground/60 hover:text-primary transition-colors flex items-center gap-1"
-                >
-                  ← Back
-                </button>
-              )}
-
               <AnimatePresence mode="wait">
                 <motion.div
                   key={step}
@@ -465,11 +524,14 @@ export default function BookingFlow() {
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -20 }}
                   transition={{ duration: 0.15 }}
+                  className="min-h-[500px]"
                 >
-                  <h3 className="text-xl sm:text-2xl font-bold mb-2 text-foreground font-['Space_Grotesk']">
+                  <h3 className="text-xl sm:text-2xl font-bold text-foreground font-['Space_Grotesk']" style={{ marginBottom: steps[step].subtitle ? '0.5rem' : '1.5rem' }}>
                     {steps[step].title}
                   </h3>
-                  <p className="text-sm text-foreground/60 mb-6">{steps[step].subtitle}</p>
+                  {steps[step].subtitle && (
+                    <p className="text-sm text-foreground/60 mb-6">{steps[step].subtitle}</p>
+                  )}
 
                   {steps[step].content}
                 </motion.div>
