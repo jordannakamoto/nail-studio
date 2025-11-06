@@ -213,25 +213,6 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Transition to Booking */}
-      <section className="py-6 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-background to-muted/30">
-        <div className="max-w-4xl mx-auto text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-            viewport={{ once: true }}
-          >
-            <p className="text-lg md:text-xl text-foreground/70 mb-3">
-              ready to get your custom set?
-            </p>
-            <h2 className="text-3xl md:text-4xl font-bold gradient-text font-['Space_Grotesk']">
-              let's make it happen ✨
-            </h2>
-          </motion.div>
-        </div>
-      </section>
-
       {/* Booking Flow Section */}
       <BookingFlow />
 
